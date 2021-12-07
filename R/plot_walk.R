@@ -1,6 +1,13 @@
+#' Plots a random walk
+#'
+#' @param walk a simulated random walk
+#' @return plot a random walk over 100 time steps.
+#' @examples
+#' plot_walk(walk)
+#' plot_walk(simulated_walk)
 #' @export
 plot_walk <- function(walk) {
-  # Plots a random walk (see simulate_walk())
+  #
   dat <- dplyr::tibble(
     time = seq_along(walk),
     position = walk
