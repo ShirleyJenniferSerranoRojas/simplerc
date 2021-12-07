@@ -11,27 +11,59 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 # Please put your title here to include it in the file below.
-Title <- "Title of your paper goes here"
+Title <- "Random walks"
 ```
+
 
 # simplerc
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh///master?urlpath=rstudio)
 
-This repository contains the data and code for our paper:
-
-> Authors, (YYYY). _`r Title`_. Name of journal/book <https://doi.org/xxx/xxx>
-
-Our pre-print is online here:
-
-> Authors, (YYYY). _`r Title`_. Name of journal/book, Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
-
+The random walk is a useful statistical tool for modeling animal behavior and predicting stock markets. It can be used to
+simulate a Gaussian random walk by taking the cumulative sum of random normal numbers.
+Random walks are best visualized as a line plot.
 
 ### How to cite
 
 Please cite this compendium as:
 
-> Authors, (`r format(Sys.Date(), "%Y")`). _Compendium of R code and data for `r Title`_. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
+> Randomwalk Enthusiast, (`r format(Sys.Date(), "%Y")`). _Compendium of R code and data for `r Introduction to random walks`_. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/0000-0002-6302-905X>
+
+
+## How to run in your broswer or download and run locally
+
+This research compendium has been developed using the statistical programming
+language R. To work with the compendium, you will need
+installed on your computer the [R software](https://cloud.r-project.org/)
+itself and optionally [RStudio Desktop](https://rstudio.com/products/rstudio/download/).
+
+You can download the compendium as a zip from from this URL:
+[master.zip](/archive/master.zip). After unzipping:
+- open the `.Rproj` file in RStudio
+- run `devtools::install()` to ensure you have the packages this analysis depends on (also listed in the
+[DESCRIPTION](/DESCRIPTION) file).
+- finally, open `analysis/paper/paper.Rmd` and knit to produce the `paper.docx`, or run `rmarkdown::render("analysis/paper/paper.Rmd")` in the R console
+
+
+### Usage
+You can use simulate_walk to simulate a Gaussian random walk, where the parameters of the Gaussian random walk ($\mu$ and $\sigma$) are the mean and standard deviation of the step lengths, respectively:
+
+Figure \@ref(fig:fig1) shows a simulated random walk with $\mu$ = 0.1 and $\sigma$ = 2 over 100 time steps.
+
+```{r fig1, fig.cap="A random walk"}
+t <- 100
+mu <- 0.5
+sigma <- 2
+walk <- simulate_walk(t, mu, sigma)
+plot_walk(walk)
+```
+
+
+```{r fit}
+params <- fit_walk(walk)
+```
+The fitted walk estimated parameters of $\mu$ = `r params$mu` and $\sigma$ = `r params$sigma`.
+
 
 ## Contents
 
@@ -50,19 +82,7 @@ The **analysis** directory contains:
     Supplementary materials including notes and other documents
     prepared and collected during the analysis.
 
-## How to run in your broswer or download and run locally
 
-This research compendium has been developed using the statistical programming
-language R. To work with the compendium, you will need
-installed on your computer the [R software](https://cloud.r-project.org/)
-itself and optionally [RStudio Desktop](https://rstudio.com/products/rstudio/download/).
-
-You can download the compendium as a zip from from this URL:
-[master.zip](/archive/master.zip). After unzipping:
-- open the `.Rproj` file in RStudio
-- run `devtools::install()` to ensure you have the packages this analysis depends on (also listed in the
-[DESCRIPTION](/DESCRIPTION) file).
-- finally, open `analysis/paper/paper.Rmd` and knit to produce the `paper.docx`, or run `rmarkdown::render("analysis/paper/paper.Rmd")` in the R console
 
 ### Licenses
 
